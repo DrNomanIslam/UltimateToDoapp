@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+package todo;
+
+// The greeting service definition.
+service ToDo {
+  rpc GetTasks (Empty) returns (Tasks) {}
+  rpc GetTask (TaskRequest) returns (Task) {}
+  rpc UpdateTask (Task) returns (TaskStatus) {}
+  rpc AddTask (Task) returns (TaskStatus) {}
+  rpc DeleteTask (TaskRequest) returns (TaskStatus) {}
+}
+
+
+message Tasks {
+  repeated Task tasks = 1;
+}
+
+//A particular task
+message Task {
+  string task_id = 1;
+  string description = 2;
+  string title = 3;
+  string done = 4;
+}
+
+message TaskStatus {
+  string status = 1;
+}
+
+message TaskRequest {
+  string task_id = 1;
+}
+
+message Empty {
+
+}
